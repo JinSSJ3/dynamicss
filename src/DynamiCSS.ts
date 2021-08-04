@@ -19,13 +19,12 @@ export namespace DynamiCSS {
         styleSheet.id = result_id;
         styleSheet.setAttribute("type", "text/css");
         const contetRaw: string = toRawStyleSheet(dynamicSheet.sheetRules || []);
-        console.log("DynamiCSS insertStyleSheet toRawStyleSheet =>contetRaw", contetRaw);
         styleSheet.textContent = contetRaw;
-        try {
-            document.head.appendChild(styleSheet);
-        } catch (error: any) {
+        const appendResult:HTMLStyleElement = document.head.appendChild(styleSheet);
+        if(!appendResult){
             return "";
         }
+       
         return result_id;
     }
     export function editStyleSheet(id: string, sheetRules: DynamicSheetRule[]): string {
@@ -54,9 +53,13 @@ export namespace DynamiCSS {
     }
     export function removeStyleSheet(id: string): string {
         let result_id = "";
+        if(!id){
+            return "";
+        }
         const htmlObject = document.getElementById(id);
         if (htmlObject) {
             document.head.removeChild(htmlObject);
+            result_id=id;
         }
 
         return result_id;
@@ -108,40 +111,33 @@ function isPseudo(ruleLabel: string): boolean {
     return ruleLabel.includes(":");
 }
 
-function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
+export function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
     if (!sheetRules) {
         return "";
     }
-    console.log("Dynamicss sheetRules", sheetRules);
-    // const sheetRules: DynamicSheetRule[] = sheet.sheetRules;
     let rawStyleSheet: string = "";
     let nestedPseudos: DynamicSheetRule[] = [];
 
     for (let j = 0; j < sheetRules.length; j++) {
 
         const currentRule: DynamicSheetRule = sheetRules[j];
-        console.log(`Dynamicss currentRule j=${j}`, currentRule);
 
         let currnetRawRule: string = "";
         currnetRawRule += `.${currentRule.className}{\n`;
         //list of labels for rules
         const ruleskeys: string[] = Object.keys(currentRule.rules);
-        console.log(`Dynamicss ruleskeys j=${j}`, ruleskeys);
 
         for (let i = 0; i < ruleskeys.length; i++) {
             const currentKey = ruleskeys[i];
-            console.log(`Dynamicss currentKey j=${j} i=${i}`, currentKey);
 
             const styleLabel: string = fromUpperCaseToHyphen(currentKey);
             //if a pseudo class found, separate it
             if (isPseudo(styleLabel)) {
-                console.log(`Dynamicss isPseudo true j=${j} i=${i}`, styleLabel);
 
                 const pseudoClassName: string = currentRule.className + styleLabel;
                 nestedPseudos.push({ className: pseudoClassName, rules: (currentRule as any).rules[styleLabel] });
             } else {
                 const styleRule: string = (currentRule.rules as any)[currentKey];
-                console.log("Dynamicss currnetRawRule", currentRule.rules, currentKey, styleRule);
                 currnetRawRule += `\t${styleLabel} : ${styleRule};\n`;
             }
 
@@ -152,7 +148,6 @@ function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
     }
     //nested pseudos
 
-    console.log(`Dynamicss nestedPseudos`, nestedPseudos);
 
     for (let p = 0; p < nestedPseudos.length; p++) {
         let currnetRawRule: string = "";
@@ -168,6 +163,5 @@ function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
         currnetRawRule += `}\n`;
         rawStyleSheet += currnetRawRule;
     }
-
     return rawStyleSheet;
 }

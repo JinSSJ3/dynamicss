@@ -29,7 +29,7 @@ npm i dynamicss
 ## Usage (basic example)
 
 Here is a quick example to get you started, **it's all you need**:
-
+ 
 Interactive and live demo:
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-drop-zone-demo1-o7izp)
@@ -37,13 +37,26 @@ Interactive and live demo:
 
 In this example we are telling the drop zone:
 
+## Dynamic Types:
+| Name | Description | Attributes |
+| - | - | - |
+| `DynamicSheet` | Object that represents a css style sheet | `id`: string;   |
+|  |  | `content?`: string; |
+| | |`sheetRules?`: DynamicSheetRule[];|
+| `DynamicSheetRule` | Object that represents a set of css rules for a classname |   `className`: string;|
+| | | `rules`: DynamicStyle \| DynamicPseudoNested \| DynamicHyphens;|
 
-## Props (all are optional)
+## Functions:
+## `function insertStyleSheet(dynamicSheet: DynamicSheet): string;`
+- Allows to insert a new stylesheet, if already exists one with the given id, it wont do anything, just returns the id
+## `function editStyleSheet(id: string, sheetRules: DynamicSheetRule[]): string;`
+
+## `function removeStyleSheet(id: string): string;`
 
 
 | Name | Description | Default |
 | - | - | - |
-| `style` | Object that contains the main styles for the component. | themeColor:#ff6c37, backgroundImage:"https://www.postman.com/assets/use-cases-by-role.svg" |
+| `insertStyleSheet()` | Object that contains the main styles for the component. | themeColor:#ff6c37, backgroundImage:"https://www.postman.com/assets/use-cases-by-role.svg" |
 
 
 
