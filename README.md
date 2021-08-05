@@ -17,7 +17,7 @@ DinamiCSS is available as an [npm package](https://www.npmjs.com/package/dinamic
 
 ```sh
 // with npm
-npm i dynamicss
+npm i @dynamicss/dynamicss
 ```
 
 ## Main Features:
