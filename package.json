@@ -1,6 +1,6 @@
 {
   "name": "@dynamicss/dynamicss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Manage CSS style sheets with javascript",
   "main": "./build/index.js",
   "module": "./build/index.es.js",
