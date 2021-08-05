@@ -33,9 +33,6 @@ Interactive and live demo:
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/dynamicss-react-h5zie)
 
-
-In this example we are telling the drop zone:
-
 ## Dynamic Types:
 | Name | Description | Attributes |
 | - | - | - |
