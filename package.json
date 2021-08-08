@@ -1,6 +1,6 @@
 {
   "name": "@dynamicss/dynamicss",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Manage CSS style sheets with javascript",
   "main": "./build/index.js",
   "module": "./build/index.es.js",
@@ -73,7 +73,8 @@
     "build": "rollup -c",
     "lint": "eslint src/*.tsx --quiet --fix",
     "test": "jest",
-    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info"
-  },
-  "postinstall": "node postinstallSSJ.js"
+    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+    "postinstall": "node postinstallSSJ.js"
+  }
+  
 }
