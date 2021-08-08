@@ -20,11 +20,11 @@ export namespace DynamiCSS {
         styleSheet.setAttribute("type", "text/css");
         const contetRaw: string = toRawStyleSheet(dynamicSheet.sheetRules || []);
         styleSheet.textContent = contetRaw;
-        const appendResult:HTMLStyleElement = document.head.appendChild(styleSheet);
-        if(!appendResult){
+        const appendResult: HTMLStyleElement = document.head.appendChild(styleSheet);
+        if (!appendResult) {
             return "";
         }
-       
+
         return result_id;
     }
     export function editStyleSheet(id: string, sheetRules: DynamicSheetRule[]): string {
@@ -53,16 +53,28 @@ export namespace DynamiCSS {
     }
     export function removeStyleSheet(id: string): string {
         let result_id = "";
-        if(!id){
+        if (!id) {
             return "";
         }
-        const htmlObject = document.getElementById(id);
+        const htmlObject: HTMLElement = document.getElementById(id);
         if (htmlObject) {
             document.head.removeChild(htmlObject);
-            result_id=id;
+            result_id = id;
         }
 
         return result_id;
+    }
+    export function existStyleSheet(id: string): boolean {
+
+        if (!id) {
+            return false;
+        }
+        const htmlObject: HTMLElement = document.getElementById(id);
+        if (htmlObject) {
+            return true;
+        }
+
+        return false;
     }
 }
 

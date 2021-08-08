@@ -8,3 +8,4 @@ jest.config.js
 /tests
 coverage
 .prettierrc
+rollup.config.js

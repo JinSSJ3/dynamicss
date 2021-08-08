@@ -76,5 +76,4 @@
     "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
     "postinstall": "node postinstallSSJ.js"
   }
-  
 }
