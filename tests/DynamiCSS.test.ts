@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/dom'
 import "@testing-library/jest-dom";
 import { DynamicSheetRule, DynamiCSS } from '../src'
-import { toRawStyleSheet } from '../src/DynamiCSS';
+import { makeRawRuleLabel, toRawStyleSheet } from '../src/DynamiCSS';
 
 const notNullSheet1 = {
   id: "style-test-id",
@@ -14,6 +14,7 @@ const notNullSheet1 = {
     }
   ]
 };
+const classNameSpaces = "material-button material-button-root using-dynamicss";
 const notNullsheetRules: DynamicSheetRule[] = [{
   className: "style-test",
   rules: {
@@ -81,7 +82,7 @@ describe("check editStyleSheet function", () => {
   <div data-testid="dynamic-style-background" class="style-test"> 
     <span data-testid="not-empty">
       <span data-testid="empty">
-      </span>
+      </span> 
     </span>
     <div data-testid="visible">
       Visible Example
@@ -129,6 +130,23 @@ describe("check removeStyleSheet function", () => {
   });
 
 });
+describe("check removeStyleSheet function", () => {
+
+
+  it("must return the same id sent as parameter on sucess", () => {
+    const insertedId = DynamiCSS.insertStyleSheet(notNullSheet1);
+    const result = DynamiCSS.removeStyleSheet(insertedId);
+    expect(result).toEqual(insertedId);
+  });
+
+  it("must return empty string if id is null", () => {
+    const insertedId = DynamiCSS.insertStyleSheet(notNullSheet1);
+    const result = DynamiCSS.removeStyleSheet(null);
+    expect(result).toEqual("");
+  });
+
+});
+
 
 describe("check toRawStyleSheet function", () => {
   it("must return empty string if sheetRules object is null", () => {
@@ -138,7 +156,50 @@ describe("check toRawStyleSheet function", () => {
   it("must return an specific string representation for the rules", () => {
     const result = toRawStyleSheet(notNullsheetRules);
     const strsResponseRulesExpected = ".style-test{\n\tbackground-color : salmon;\n}\n.style-test:hover{\n\tcursor : pointer;\n}\n";
-    
+
     expect(result).toEqual(strsResponseRulesExpected);
   });
+});
+
+describe("check existStyleSheet function", () => {
+
+  it("must return false if id is null", () => {
+    const insertedId = DynamiCSS.insertStyleSheet(notNullSheet1);
+    const result = DynamiCSS.existStyleSheet(null);
+    expect(result).toEqual(false);
+  });
+  it("must return false if the stylesheet is not on the DOM", () => {
+    const insertedId = DynamiCSS.insertStyleSheet(notNullSheet1);
+    const result = DynamiCSS.existStyleSheet("other id");
+    expect(result).toEqual(false);
+  });
+  it("must return true if the stylesheet is on the DOM", () => {
+    const insertedId = DynamiCSS.insertStyleSheet(notNullSheet1);
+    const result = DynamiCSS.existStyleSheet(insertedId);
+    expect(result).toEqual(true);
+  });
+
+
+});
+
+describe("check makeStyleSheet function", () => {
+
+  it("must return null if styleSheet is null", () => {
+    const insertedsheet = DynamiCSS.makeStyleSheet(notNullSheet1);
+    expect(insertedsheet).toEqual(notNullSheet1);
+  });
+  it("must return false if the stylesheet is not on the DOM", () => {
+    const insertedsheet = DynamiCSS.makeStyleSheet(null);
+    expect(insertedsheet).toEqual(null);
+  });
+});
+
+describe("check makeRawRuleLabel function", () => {
+
+  it("must return an specific string concatenated with '.' when label is separated by spaces", () => {
+    const resultLabel = makeRawRuleLabel(classNameSpaces);
+    const expectedLabel = ".material-button.material-button-root.using-dynamicss{\n";
+    expect(resultLabel).toEqual(expectedLabel);
+  });
+
 });

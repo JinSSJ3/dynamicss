@@ -18,7 +18,7 @@ export namespace DynamiCSS {
         var styleSheet: HTMLStyleElement = document.createElement("style");
         styleSheet.id = result_id;
         styleSheet.setAttribute("type", "text/css");
-        const contetRaw: string = toRawStyleSheet(dynamicSheet.sheetRules || []);
+        const contetRaw: string = toRawStyleSheet(dynamicSheet.sheetRules || []) + dynamicSheet.raw || "";
         styleSheet.textContent = contetRaw;
         const appendResult: HTMLStyleElement = document.head.appendChild(styleSheet);
         if (!appendResult) {
@@ -65,7 +65,6 @@ export namespace DynamiCSS {
         return result_id;
     }
     export function existStyleSheet(id: string): boolean {
-
         if (!id) {
             return false;
         }
@@ -73,8 +72,13 @@ export namespace DynamiCSS {
         if (htmlObject) {
             return true;
         }
-
         return false;
+    }
+    export function makeStyleSheet(styleSheet: DynamicSheet): DynamicSheet {
+        if (!styleSheet) {
+            return null;
+        }
+        return styleSheet;
     }
 }
 
@@ -123,6 +127,21 @@ function isPseudo(ruleLabel: string): boolean {
     return ruleLabel.includes(":");
 }
 
+export function makeRawRuleLabel(className: string): string {
+    let result = "";
+    const splitedClassName: string[] = className.trim().split(" ");
+    //is composed classname?
+    if (splitedClassName.length > 1) {
+        for (let i = 0; i < splitedClassName.length; i++) {
+            result += `.${splitedClassName[i]}`;
+        }
+        result += `{\n`;
+    } else {
+        result += `.${className}{\n`;
+    }
+
+    return result;
+}
 export function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
     if (!sheetRules) {
         return "";
@@ -135,7 +154,9 @@ export function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
         const currentRule: DynamicSheetRule = sheetRules[j];
 
         let currnetRawRule: string = "";
-        currnetRawRule += `.${currentRule.className}{\n`;
+        // currnetRawRule += `.${currentRule.className}{\n`;
+        currnetRawRule += makeRawRuleLabel(currentRule.className);
+
         //list of labels for rules
         const ruleskeys: string[] = Object.keys(currentRule.rules);
 

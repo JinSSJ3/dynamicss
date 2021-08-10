@@ -13,7 +13,7 @@ export interface DynamicSheet {
     //an id to identify the style sheet
     id: string;
     //raw content after parsing keys and adding "{", "}", ":" and ";"
-    content?: string;
+    raw?: string;
 
     sheetRules?: DynamicSheetRule[];
 }
@@ -52,7 +52,7 @@ export const sheetExample: DynamicSheet = {
                 ":hover": {
                     "background-color": "cornflowerblue",
                     borderRadius: "2px",
-                }
+                },
             }
         }
     ]

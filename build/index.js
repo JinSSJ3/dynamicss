@@ -6,12 +6,12 @@ function ___$insertStyle(css) {
   if (!css) {
     return;
   }
+
   if (typeof window === 'undefined') {
     return;
   }
 
-  var style = document.createElement('style');
-
+  const style = document.createElement('style');
   style.setAttribute('type', 'text/css');
   style.innerHTML = css;
   document.head.appendChild(style);
@@ -86,6 +86,17 @@ exports.DynamiCSS = void 0;
         return result_id;
     }
     DynamiCSS.removeStyleSheet = removeStyleSheet;
+    function existStyleSheet(id) {
+        if (!id) {
+            return false;
+        }
+        var htmlObject = document.getElementById(id);
+        if (htmlObject) {
+            return true;
+        }
+        return false;
+    }
+    DynamiCSS.existStyleSheet = existStyleSheet;
 })(exports.DynamiCSS || (exports.DynamiCSS = {}));
 /**
  * Determines whether a character is upperCase or not
@@ -134,6 +145,21 @@ function isPseudo(ruleLabel) {
         return false;
     return ruleLabel.includes(":");
 }
+function makeRawRuleLabel(className) {
+    var result = "";
+    var splitedClassName = className.trim().split(" ");
+    //is composed classname?
+    if (splitedClassName.length > 1) {
+        for (var i = 0; i < splitedClassName.length; i++) {
+            result += "." + splitedClassName[i];
+        }
+        result += "{\n";
+    }
+    else {
+        result += "." + className + "{\n";
+    }
+    return result;
+}
 function toRawStyleSheet(sheetRules) {
     if (!sheetRules) {
         return "";
@@ -143,7 +169,8 @@ function toRawStyleSheet(sheetRules) {
     for (var j = 0; j < sheetRules.length; j++) {
         var currentRule = sheetRules[j];
         var currnetRawRule = "";
-        currnetRawRule += "." + currentRule.className + "{\n";
+        // currnetRawRule += `.${currentRule.className}{\n`;
+        currnetRawRule += makeRawRuleLabel(currentRule.className);
         //list of labels for rules
         var ruleskeys = Object.keys(currentRule.rules);
         for (var i = 0; i < ruleskeys.length; i++) {
