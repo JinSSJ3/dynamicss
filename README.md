@@ -6,6 +6,7 @@
 [![npm latest package](https://img.shields.io/npm/v/@dynamicss/dynamicss.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen)](https://www.npmjs.com/package/@dynamicss/dynamicss)
 [![npm latest package](https://img.shields.io/badge/npm%40LTS-1.0.7-magenta)](https://www.npmjs.com/package/@dynamicss/dynamicss)
 [![dependencies Status](https://status.david-dm.org/gh/jinssj3/dynamicss.svg)](https://david-dm.org/jinssj3/dynamicss)
+[![install size](https://packagephobia.com/badge?p=@dynamicss/dynamicss)](https://packagephobia.com/result?p=@dynamicss/dynamicss)
 [![Build Status](https://www.travis-ci.com/JinSSJ3/dynamicss.svg?branch=master)](https://www.travis-ci.com/JinSSJ3/dynamicss)
 [![Coverage Status](https://coveralls.io/repos/github/JinSSJ3/dynamicss/badge.svg?branch=master&t=NYfAAW)](https://coveralls.io/github/JinSSJ3/dynamicss?branch=master)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/JinSSJ3/dynamicss.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JinSSJ3/dynamicss/alerts/)

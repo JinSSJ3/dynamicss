@@ -36,19 +36,16 @@ export namespace DynamiCSS {
             return "";
         }
         //if dont exists yet
-        if (!document.getElementById(id)) {
+        var styleSheet: HTMLElement =document.getElementById(id);
+        if (!styleSheet) {
             return "";
         }
-        result_id = id;
-        var styleSheet: HTMLStyleElement = document.createElement("style");
+       /*  result_id = id;
+        //var styleSheet: HTMLStyleElement = document.createElement("style");
         styleSheet.id = result_id;
-        styleSheet.setAttribute("type", "text/css");
+        styleSheet.setAttribute("type", "text/css"); */
         styleSheet.textContent = toRawStyleSheet(sheetRules);
-        try {
-            document.head.appendChild(styleSheet);
-        } catch (error: any) {
-            return "";
-        }
+        
         return result_id;
     }
     export function removeStyleSheet(id: string): string {

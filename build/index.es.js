@@ -32,7 +32,7 @@ var DynamiCSS;
         var styleSheet = document.createElement("style");
         styleSheet.id = result_id;
         styleSheet.setAttribute("type", "text/css");
-        var contetRaw = toRawStyleSheet(dynamicSheet.sheetRules || []);
+        var contetRaw = toRawStyleSheet(dynamicSheet.sheetRules || []) + dynamicSheet.raw || "";
         styleSheet.textContent = contetRaw;
         var appendResult = document.head.appendChild(styleSheet);
         if (!appendResult) {
@@ -50,20 +50,15 @@ var DynamiCSS;
             return "";
         }
         //if dont exists yet
-        if (!document.getElementById(id)) {
+        var styleSheet = document.getElementById(id);
+        if (!styleSheet) {
             return "";
         }
-        result_id = id;
-        var styleSheet = document.createElement("style");
-        styleSheet.id = result_id;
-        styleSheet.setAttribute("type", "text/css");
+        /*  result_id = id;
+         //var styleSheet: HTMLStyleElement = document.createElement("style");
+         styleSheet.id = result_id;
+         styleSheet.setAttribute("type", "text/css"); */
         styleSheet.textContent = toRawStyleSheet(sheetRules);
-        try {
-            document.head.appendChild(styleSheet);
-        }
-        catch (error) {
-            return "";
-        }
         return result_id;
     }
     DynamiCSS.editStyleSheet = editStyleSheet;
@@ -91,6 +86,13 @@ var DynamiCSS;
         return false;
     }
     DynamiCSS.existStyleSheet = existStyleSheet;
+    function makeStyleSheet(styleSheet) {
+        if (!styleSheet) {
+            return null;
+        }
+        return styleSheet;
+    }
+    DynamiCSS.makeStyleSheet = makeStyleSheet;
 })(DynamiCSS || (DynamiCSS = {}));
 /**
  * Determines whether a character is upperCase or not

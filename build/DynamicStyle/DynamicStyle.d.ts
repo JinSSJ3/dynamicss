@@ -10,7 +10,7 @@ export declare type DynamicHyphens = CSS.PropertiesHyphen;
  */
 export interface DynamicSheet {
     id: string;
-    content?: string;
+    raw?: string;
     sheetRules?: DynamicSheetRule[];
 }
 /**
