@@ -1,6 +1,6 @@
 {
   "name": "@dynamicss/dynamicss",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Manage CSS style sheets with javascript",
   "main": "./build/index.js",
   "module": "./build/index.es.js",
@@ -18,7 +18,9 @@
     "stylesheet",
     "inject css",
     "typescript",
-    "unlimited"
+    "unlimited",
+    "front-end",
+    "framework"
   ],
   "author": "JinSSJ3",
   "license": "MIT",
