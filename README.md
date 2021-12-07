@@ -4,14 +4,12 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/JinSSJ3/react-drop-zone-responsive/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@dynamicss/dynamicss.svg?logo=npm&logoColor=fff&label=NPM+package&color=limegreen)](https://www.npmjs.com/package/@dynamicss/dynamicss)
-[![npm latest package](https://img.shields.io/badge/npm%40LTS-1.0.7-magenta)](https://www.npmjs.com/package/@dynamicss/dynamicss)
-[![dependencies Status](https://status.david-dm.org/gh/jinssj3/dynamicss.svg)](https://david-dm.org/jinssj3/dynamicss)
 [![install size](https://packagephobia.com/badge?p=@dynamicss/dynamicss)](https://packagephobia.com/result?p=@dynamicss/dynamicss)
 [![Build Status](https://www.travis-ci.com/JinSSJ3/dynamicss.svg?branch=master)](https://www.travis-ci.com/JinSSJ3/dynamicss)
 [![Coverage Status](https://coveralls.io/repos/github/JinSSJ3/dynamicss/badge.svg?branch=master&t=NYfAAW)](https://coveralls.io/github/JinSSJ3/dynamicss?branch=master)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/JinSSJ3/dynamicss.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JinSSJ3/dynamicss/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/unlimited-react-components/react-drop-zone.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/unlimited-react-components/react-drop-zone/context:javascript)
-[![Known Vulnerabilities](https://snyk.io/test/github/unlimited-react-components/react-drop-zone/badge.svg)](https://snyk.io/test/github/unlimited-react-components/react-drop-zone)
+[![Known Vulnerabilities](https://snyk.io/test/github/jinSSJ3/dynamicss/badge.svg)](https://snyk.io/test/github/jinssj3/dynamicss)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## Description
