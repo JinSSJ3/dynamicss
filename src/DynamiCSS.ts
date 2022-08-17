@@ -1,7 +1,12 @@
 import { DynamicSheet, DynamicSheetRule } from "./DynamicStyle/DynamicStyle";
 
 export namespace DynamiCSS {
-
+    /**
+     * Inserts a stylesheet into the DOM.
+     * When an error occurs returns an empty string
+     * @param dynamicSheet a dyncamic sheet
+     * @return the id of the stylesheet in string format
+     */
     export function insertStyleSheet(dynamicSheet: DynamicSheet): string {
         let result_id = "";
         if (typeof window === "undefined") {
@@ -27,6 +32,12 @@ export namespace DynamiCSS {
 
         return result_id;
     }
+    /**
+     * 
+     * @param id the id of he style sheet
+     * @param sheetRules the set of rules
+     * @returns an empty string or the id
+     */
     export function editStyleSheet(id: string, sheetRules: DynamicSheetRule[]): string {
         let result_id = "";
         if (typeof window === "undefined") {
@@ -48,6 +59,13 @@ export namespace DynamiCSS {
         
         return result_id;
     }
+    /**
+     * Given an id in string format, checks into the DOM whether there is a style
+     * with the given id. If true, this function will remove the stylesheet and return the id.
+     * If not present, will return an empty string
+     * @param id the id of the stylesheet to remove if exists
+     * @returns the id or an empty string
+     */
     export function removeStyleSheet(id: string): string {
         let result_id = "";
         if (!id) {
@@ -61,6 +79,12 @@ export namespace DynamiCSS {
 
         return result_id;
     }
+    /**
+     * Given an id in string format, checks into the DOM whether there is a style
+     * with the given id exists and returna boolean result
+     * @param id the id of the stylesheet to check if exists
+     * @returns true if the stylesheet was found
+     */
     export function existStyleSheet(id: string): boolean {
         if (!id) {
             return false;
@@ -71,6 +95,11 @@ export namespace DynamiCSS {
         }
         return false;
     }
+    /**
+     * Creates a stylesheet given a stylesheet
+     * @param styleSheet astylesheet
+     * @returns the new stylesheet object
+     */
     export function makeStyleSheet(styleSheet: DynamicSheet): DynamicSheet {
         if (!styleSheet) {
             return null;
@@ -81,7 +110,7 @@ export namespace DynamiCSS {
 
 /**
  * Determines whether a character is upperCase or not
- * @param str a character
+ * @param character a character
  * @returns true if str contains a string character
  */
 function isUpper(character: string): boolean {
@@ -90,8 +119,8 @@ function isUpper(character: string): boolean {
 }
 /**
  * Converts a rule with uppercase to a hyphen-lowercase version
- * @param rule the rule
- * @returns 
+ * @param ruleLabel the rule
+ * @returns a hyphen-lowercase label
  */
 function fromUpperCaseToHyphen(ruleLabel: string): string {
     let result = "";
@@ -115,7 +144,7 @@ function fromUpperCaseToHyphen(ruleLabel: string): string {
     return result;
 }
 /**
- * 
+ * Checks if the label contains the ":" character
  * @param ruleLabel the rule
  * @returns true if the rule label corresponds to a pseudo class
  */
@@ -124,6 +153,11 @@ function isPseudo(ruleLabel: string): boolean {
     return ruleLabel.includes(":");
 }
 
+/**
+ * 
+ * @param className 
+ * @returns 
+ */
 export function makeRawRuleLabel(className: string): string {
     let result = "";
     const splitedClassName: string[] = className.trim().split(" ");
@@ -139,6 +173,11 @@ export function makeRawRuleLabel(className: string): string {
 
     return result;
 }
+/**
+ * 
+ * @param sheetRules 
+ * @returns 
+ */
 export function toRawStyleSheet(sheetRules: DynamicSheetRule[]): string {
     if (!sheetRules) {
         return "";
